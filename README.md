@@ -42,6 +42,7 @@ Node.js and npm installed on your machine
 A text editor or IDE (e.g., Visual Studio Code)
 
 Installation
+
 1]Clone the repository:
 
 git clone https://github.com/your-username/product-search-app.git
