@@ -60,8 +60,8 @@ const Homepage = () => {
       />
       
       {/* Filters and Sorting */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4">
-        <div className="flex space-x-4 mb-4 sm:mb-0">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 space-y-4 sm:space-y-0">
+        <div className="flex flex-wrap space-x-4">
           <CategoryFilter selected={category} onChange={setCategory} />
           <SortOptions selected={sortOption} onChange={setSortOption} />
         </div>
@@ -73,7 +73,7 @@ const Homepage = () => {
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
