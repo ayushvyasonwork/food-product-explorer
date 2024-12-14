@@ -45,9 +45,9 @@ Installation
 
 1]Clone the repository:
 
-git clone https://github.com/your-username/product-search-app.git
+git clone https://github.com/your-username/food-product-explorer.git
 
-cd product-search-app
+cd food-product-explorer
 
 2]Install dependencies:
 
