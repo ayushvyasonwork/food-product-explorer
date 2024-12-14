@@ -10,9 +10,11 @@ const Homepage = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("snacks");
   const [query, setQuery] = useState("");
-  const [barcode, setBarcode] = useState(""); // Add barcode state
+  const [barcode, setBarcode] = useState(""); // Barcode state
   const [sortOption, setSortOption] = useState("");
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1); // Page tracking
+  const [hasMore, setHasMore] = useState(true); // Load more flag
 
   // Fetch products by category or barcode
   useEffect(() => {
@@ -22,17 +24,36 @@ const Homepage = () => {
       if (barcode) {
         const productData = await fetchProductByBarcode(barcode); // Fetch product by barcode
         setProducts(productData.products || []); // Assuming API returns products in this structure
+        setHasMore(false); // Disable "Load More" if searching by barcode
       } else {
-        const data = await fetchProductsByCategory(category); // Fetch products by category
+        const data = await fetchProductsByCategory(category, 1); // Fetch products for the first page
         setProducts(data.products || []);
+        setHasMore(data.products && data.products.length > 0); // Check if more products exist
       }
 
+      setCurrentPage(1); // Reset to the first page on category/barcode change
       setLoading(false);
     };
 
     fetchData();
   }, [category, barcode]);
 
+  // Fetch more products for pagination
+  const fetchMoreProducts = async () => {
+    setLoading(true);
+
+    const data = await fetchProductsByCategory(category, currentPage + 1); // Fetch next page
+    if (data.products && data.products.length > 0) {
+      setProducts((prev) => [...prev, ...data.products]); // Append new products
+      setCurrentPage((prev) => prev + 1); // Increment page count
+    } else {
+      setHasMore(false); // No more products to load
+    }
+
+    setLoading(false);
+  };
+
+  // Filter and sort products
   const filteredProducts = products
     .filter((product) =>
       query ? product.product_name?.toLowerCase().includes(query.toLowerCase()) : true
@@ -85,7 +106,7 @@ const Homepage = () => {
       )}
 
       {/* Pagination */}
-      <Pagination />
+      <Pagination onLoadMore={fetchMoreProducts} hasMore={hasMore} />
     </div>
   );
 };
