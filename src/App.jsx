@@ -12,7 +12,7 @@ const App = () => {
       <div className="App flex flex-col min-h-screen">
         {/* Header */}
         <Header />
-
+        {/* this is part of new branch */}
         {/* Main Content */}
         <main className="flex-grow bg-orange-50 py-8">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
