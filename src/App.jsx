@@ -12,6 +12,7 @@ const App = () => {
       <div className="App flex flex-col min-h-screen">
         {/* Header */}
         <Header />
+        {/* new code  */}
         {/* this is part of new branch */}
         {/* Main Content */}
         <main className="flex-grow bg-orange-50 py-8">
