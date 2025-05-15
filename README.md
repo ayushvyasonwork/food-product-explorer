@@ -1,4 +1,4 @@
-Internship Assignment
+
 
 A React-based web application that allows users to search for food products using a category, name, or barcode. Users can view detailed information about individual products, including images, ingredients, nutritional values, and labels.
 
